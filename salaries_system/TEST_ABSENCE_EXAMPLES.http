@@ -1,0 +1,39 @@
+### Absence Tracking API Testing
+
+#### POST /api/attendance/absence - Record Absence WITH_PERMISSION
+```bash
+curl -X POST http://localhost:8080/api/attendance/absence \
+  -H "Content-Type: application/json" \
+  -d '{
+    "employeeName": "John Doe",
+    "date": "2026-03-01",
+    "absenceType": "WITH_PERMISSION"
+  }'
+```
+
+#### POST /api/attendance/absence - Record Absence WITHOUT_PERMISSION
+```bash
+curl -X POST http://localhost:8080/api/attendance/absence \
+  -H "Content-Type: application/json" \
+  -d '{
+    "employeeName": "John Doe",
+    "date": "2026-03-02",
+    "absenceType": "WITHOUT_PERMISSION"
+  }'
+```
+
+#### GET /api/attendance/absences?employeeName=John Doe - Get Employee Absences
+```bash
+curl -X GET "http://localhost:8080/api/attendance/absences?employeeName=John%20Doe"
+```
+
+#### Payroll Integration Test
+After adding absences, the payroll calculation will automatically include absence deductions:
+```bash
+curl -X POST http://localhost:8080/api/payroll/John%20Doe?year=2026&month=3
+```
+
+Expected behavior:
+- **WITH_PERMISSION** absence: 0 deduction
+- **WITHOUT_PERMISSION** absence: Full day salary deduction per absence
+- Payroll response will include `absenceDeduction` field showing total absence deductions

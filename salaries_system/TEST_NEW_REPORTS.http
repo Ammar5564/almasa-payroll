@@ -1,0 +1,58 @@
+### New Report Endpoints Testing
+
+#### POST /api/reports/employee - Employee Detailed Report
+```bash
+curl -X POST http://localhost:8080/api/reports/employee \
+  -H "Content-Type: application/json" \
+  -d '{
+    "employeeName": "John Doe",
+    "fromDate": "2026-03-01",
+    "toDate": "2026-03-31"
+  }'
+```
+
+Expected response includes:
+- Employee info (name, jobTitle, department, baseSalary)
+- All attendance records in period (date, actualStart, actualEnd, lateMinutes, overtimeMinutes)
+- All absences in period (date, absenceType)
+- All disciplinary actions in period (amount, reason, date)
+- Payroll summary if exists (finalSalary, deductions, bonuses)
+
+#### POST /api/reports/department - Department Summary Report
+```bash
+curl -X POST http://localhost:8080/api/reports/department \
+  -H "Content-Type: application/json" \
+  -d '{
+    "departmentName": "IT Department",
+    "fromDate": "2026-03-01",
+    "toDate": "2026-03-31"
+  }'
+```
+
+Expected response includes:
+- Department info (name, officialStart, officialEnd)
+- List of employees with:
+  - name, jobTitle, baseSalary
+  - total late minutes in period
+  - total absence days in period
+  - final salary if calculated
+- Summary: total employees, total payroll cost, total late minutes
+
+#### Export Functionality
+Both new reports are exportable via the existing export endpoint:
+```bash
+# First generate the report
+curl -X POST http://localhost:8080/api/reports/employee \
+  -H "Content-Type: application/json" \
+  -d '{
+    "employeeName": "John Doe",
+    "fromDate": "2026-03-01",
+    "toDate": "2026-03-31"
+  }' > employee_report.json
+
+# Then export it
+curl -X POST http://localhost:8080/api/reports/export \
+  -H "Content-Type: application/json" \
+  -d @employee_report.json \
+  --output employee_report.csv
+```

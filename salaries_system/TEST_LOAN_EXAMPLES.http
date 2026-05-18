@@ -1,0 +1,80 @@
+### Test Loan API Examples
+
+### 1. Default 12-Month Loan
+POST http://localhost:8080/api/loans/emad_hamdy
+Content-Type: application/json
+
+{
+  "totalAmount": 12000.00,
+  "customInstallments": null
+}
+
+### 2. Custom Installments - Sales Bonus Plan
+POST http://localhost:8080/api/loans/emad_hamdy
+Content-Type: application/json
+
+{
+  "totalAmount": 15000.00,
+  "customInstallments": [
+    {
+      "monthName": "Q1 2026 Bonus",
+      "dueDate": "2026-04-15",
+      "amount": 5000.00
+    },
+    {
+      "monthName": "Q2 2026 Bonus", 
+      "dueDate": "2026-07-15",
+      "amount": 5000.00
+    },
+    {
+      "monthName": "Q3 2026 Bonus",
+      "dueDate": "2026-10-15", 
+      "amount": 5000.00
+    }
+  ]
+}
+
+### 3. Custom Installments - Seasonal Plan
+POST http://localhost:8080/api/loans/emad_hamdy
+Content-Type: application/json
+
+{
+  "totalAmount": 12000.00,
+  "customInstallments": [
+    {
+      "monthName": "December 2025",
+      "dueDate": "2025-12-31",
+      "amount": 4000.00
+    },
+    {
+      "monthName": "January 2026",
+      "dueDate": "2026-01-31", 
+      "amount": 2000.00
+    },
+    {
+      "monthName": "February 2026",
+      "dueDate": "2026-02-28",
+      "amount": 2000.00
+    },
+    {
+      "monthName": "March 2026",
+      "dueDate": "2026-03-31",
+      "amount": 4000.00
+    }
+  ]
+}
+
+### 4. Error Case - Amounts Don't Sum to Total
+POST http://localhost:8080/api/loans/emad_hamdy
+Content-Type: application/json
+
+{
+  "totalAmount": 12000.00,
+  "customInstallments": [
+    {
+      "monthName": "Test",
+      "dueDate": "2026-12-31",
+      "amount": 10000.00
+    }
+  ]
+}

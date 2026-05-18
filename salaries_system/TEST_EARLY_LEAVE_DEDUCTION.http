@@ -1,0 +1,218 @@
+### Early Leave Deduction Testing
+
+#### Test Scenario: Employee Leaves Early
+**Employee**: John Doe, Base Salary: 5000.00, Working Hours: 09:00-17:00 (8 hours)
+
+#### 1. Record Attendance with Early Leave
+```bash
+curl -X POST http://localhost:8080/api/attendance \
+  -H "Content-Type: application/json" \
+  -d '{
+    "employeeName": "John Doe",
+    "date": "2026-03-25",
+    "actualStart": "09:00",
+    "actualEnd": "15:30"
+  }'
+```
+
+**Expected Response**:
+```json
+{
+  "id": 1,
+  "employeeName": "John Doe",
+  "date": "2026-03-25",
+  "actualStart": "09:00",
+  "actualEnd": "15:30",
+  "lateMinutes": 0,
+  "overtimeMinutes": 0,
+  "leaveEarlyMinutes": 150
+}
+```
+
+**Calculation**: 
+- Official End: 17:00, Actual End: 15:30
+- Early Leave: 2.5 hours = 150 minutes
+- Overtime: 0 (mutually exclusive)
+
+#### 2. Test Different Scenarios
+
+**Scenario A: Late Arrival Only**
+```bash
+curl -X POST http://localhost:8080/api/attendance \
+  -H "Content-Type: application/json" \
+  -d '{
+    "employeeName": "John Doe",
+    "date": "2026-03-26",
+    "actualStart": "09:30",
+    "actualEnd": "17:00"
+  }'
+```
+
+**Expected**: lateMinutes: 30, overtimeMinutes: 0, leaveEarlyMinutes: 0
+
+**Scenario B: Overtime Only**
+```bash
+curl -X POST http://localhost:8080/api/attendance \
+  -H "Content-Type: application/json" \
+  -d '{
+    "employeeName": "John Doe",
+    "date": "2026-03-27",
+    "actualStart": "09:00",
+    "actualEnd": "19:00"
+  }'
+```
+
+**Expected**: lateMinutes: 0, overtimeMinutes: 120, leaveEarlyMinutes: 0
+
+**Scenario C: Late + Early Leave (Same Day)**
+```bash
+curl -X POST http://localhost:8080/api/attendance \
+  -H "Content-Type: application/json" \
+  -d '{
+    "employeeName": "John Doe",
+    "date": "2026-03-28",
+    "actualStart": "09:30",
+    "actualEnd": "15:00"
+  }'
+```
+
+**Expected**: lateMinutes: 30, overtimeMinutes: 0, leaveEarlyMinutes: 120
+
+#### 3. Calculate Payroll with Early Leave Deduction
+```bash
+curl -X POST "http://localhost:8080/api/payroll/John%20Doe?year=2026&month=3"
+```
+
+**Expected Response**:
+```json
+{
+  "id": 1,
+  "employee": {...},
+  "month": "2026-03-01",
+  "overtimePay": 0.00,
+  "bonus": 0.00,
+  "lateDeduction": 25.00,
+  "leaveEarlyDeduction": 31.25,
+  "absenceDeduction": 0.00,
+  "loanDeduction": 0.00,
+  "penalties": 0.00,
+  "socialInsurance": 550.00,
+  "finalSalary": 4393.75,
+  "workedDays": 22
+}
+```
+
+**Early Leave Deduction Calculation**:
+- Daily Salary: 5000 ÷ 26 working days = 192.31
+- Hourly Rate: 192.31 ÷ 8 hours = 24.04
+- Early Leave: 2.5 hours × 24.04 = 60.10
+- (Note: Actual calculation may vary based on exact formula)
+
+#### 4. Get Pay Slip with Early Leave Deduction
+```bash
+curl -X GET "http://localhost:8080/api/payroll/John%20Doe/payslip?year=2026&month=3"
+```
+
+**Expected Response**:
+```json
+{
+  "employeeName": "John Doe",
+  "jobTitle": "Software Developer",
+  "departmentName": "IT Department",
+  "month": "March 2026",
+  "baseSalary": 5000.00,
+  "additions": {
+    "overtimePay": 0.00,
+    "bonus": 0.00,
+    "arrears": 0.00,
+    "allowances": 0.00
+  },
+  "deductions": {
+    "lateDeduction": 25.00,
+    "leaveEarlyDeduction": 60.10,
+    "absenceDeduction": 0.00,
+    "loanDeduction": 0.00,
+    "penalties": 0.00,
+    "socialInsurance": 550.00
+  },
+  "totalAdditions": 0.00,
+  "totalDeductions": 635.10,
+  "netSalary": 4364.90,
+  "generatedAt": "2026-03-25"
+}
+```
+
+#### 5. Export Pay Slip (HTML) - Should Include Early Leave Deduction
+```bash
+curl -X GET "http://localhost:8080/api/payroll/John%20Doe/payslip/export?year=2026&month=3" \
+  --output john_doe_payslip_with_early_leave.html
+```
+
+**HTML Should Include**:
+```html
+<tr><td>خصم التأخير / Late Deduction</td><td>25.00</td></tr>
+<tr><td>خصم المغادرة المبكرة / Early Leave Deduction</td><td>60.10</td></tr>
+<tr><td>خصم الغياب / Absence Deduction</td><td>0.00</td></tr>
+<tr><td>خصم القرض / Loan Deduction</td><td>0.00</td></tr>
+<tr><td>غرامات / Penalties</td><td>0.00</td></tr>
+<tr><td>تأمين اجتماعي / Social Insurance</td><td>550.00</td></tr>
+```
+
+#### 6. Validation Tests
+
+**Test 1: Mutual Exclusion**
+- Create attendance with actualEnd > officialEnd → Should have overtimeMinutes > 0, leaveEarlyMinutes = 0
+- Create attendance with actualEnd < officialEnd → Should have leaveEarlyMinutes > 0, overtimeMinutes = 0
+
+**Test 2: No Double Counting**
+- Employee who arrives late AND leaves early should have both deductions calculated separately
+
+**Test 3: Edge Cases**
+- actualEnd = officialEnd → leaveEarlyMinutes = 0, overtimeMinutes = 0
+- Multiple days with early leave → total deduction should be sum of all days
+
+#### 7. Database Validation
+
+**Check Attendance Table**:
+```sql
+SELECT id, employee_name, date, actual_start, actual_end, 
+       late_minutes, overtime_minutes, leave_early_minutes
+FROM attendance 
+WHERE employee_name = 'John Doe' AND date = '2026-03-25';
+```
+
+**Check Payroll Record Table**:
+```sql
+SELECT id, employee_name, month, late_deduction, leave_early_deduction, final_salary
+FROM payroll_records 
+WHERE employee_name = 'John Doe' AND month = '2026-03-01';
+```
+
+#### 8. Expected Formula Verification
+
+**Early Leave Deduction Formula**:
+```
+salaryPerSecond = baseSalary / (26 workingDays × officialWorkHours × 3600)
+leaveEarlyDeduction = leaveEarlyMinutes × 60 × salaryPerSecond
+```
+
+**Example Calculation**:
+- Base Salary: 5000.00
+- Working Days: 26
+- Official Work Hours: 8 (09:00-17:00)
+- Early Leave Minutes: 150 (2.5 hours)
+- salaryPerSecond = 5000 / (26 × 8 × 3600) = 0.00668
+- leaveEarlyDeduction = 150 × 60 × 0.00668 = 60.12
+
+#### 9. Complete Workflow Test
+
+1. Create employee with department work time
+2. Record attendance with early leave
+3. Verify attendance response includes leaveEarlyMinutes
+4. Calculate payroll
+5. Verify payroll includes leaveEarlyDeduction
+6. Get pay slip - should show early leave deduction
+7. Export HTML - should include early leave row
+8. Verify final salary calculation is correct
+
+This comprehensive test ensures the early leave deduction feature works correctly across all components.

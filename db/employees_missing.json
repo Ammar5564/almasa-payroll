@@ -1,0 +1,343 @@
+﻿[
+    {
+        "name":  "استاذ حسام على",
+        "jobTitle":  "إدارة عليا",
+        "departmentName":  "الاداره العليا",
+        "baseSalary":  15000,
+        "flexibleSchedule":  true
+    },
+    {
+        "name":  "استاذ طارق",
+        "jobTitle":  "موظف مالية",
+        "departmentName":  "الاداره الماليه",
+        "baseSalary":  11000
+    },
+    {
+        "name":  "استاذ محمود",
+        "jobTitle":  "موظف مالية",
+        "departmentName":  "الاداره الماليه",
+        "baseSalary":  11000
+    },
+    {
+        "name":  "استاذ ياسر",
+        "jobTitle":  "موظف مالية",
+        "departmentName":  "الاداره الماليه",
+        "baseSalary":  13500
+    },
+    {
+        "name":  "استاذ محمد حازم",
+        "jobTitle":  "موظف مالية",
+        "departmentName":  "الاداره الماليه",
+        "baseSalary":  7000
+    },
+    {
+        "name":  "استاذ عبدالرحمن",
+        "jobTitle":  "موظف مالية",
+        "departmentName":  "الاداره الماليه",
+        "baseSalary":  8000
+    },
+    {
+        "name":  "موظف بوفيه وضيافه",
+        "jobTitle":  "بوفيه",
+        "departmentName":  "بوفيه وضيافه",
+        "baseSalary":  4500
+    },
+    {
+        "name":  "مها",
+        "jobTitle":  "مبيعات",
+        "departmentName":  "ادارة المبيعات",
+        "branchName":  "شيراتون",
+        "baseSalary":  8000
+    },
+    {
+        "name":  "دعاء",
+        "jobTitle":  "مبيعات",
+        "departmentName":  "ادارة المبيعات",
+        "branchName":  "شيراتون",
+        "baseSalary":  7750
+    },
+    {
+        "name":  "ندى",
+        "jobTitle":  "مبيعات",
+        "departmentName":  "ادارة المبيعات",
+        "branchName":  "شيراتون",
+        "baseSalary":  7500
+    },
+    {
+        "name":  "سلمى عبد المحسن",
+        "jobTitle":  "مبيعات",
+        "departmentName":  "ادارة المبيعات",
+        "branchName":  "شيراتون",
+        "baseSalary":  7000
+    },
+    {
+        "name":  "بمى محمد",
+        "jobTitle":  "مبيعات",
+        "departmentName":  "ادارة المبيعات",
+        "branchName":  "شيراتون",
+        "baseSalary":  6000
+    },
+    {
+        "name":  "مايسه",
+        "jobTitle":  "مبيعات",
+        "departmentName":  "ادارة المبيعات",
+        "branchName":  "الشيخ زايد",
+        "baseSalary":  7500
+    },
+    {
+        "name":  "ريهام",
+        "jobTitle":  "مبيعات",
+        "departmentName":  "ادارة المبيعات",
+        "branchName":  "الشيخ زايد",
+        "baseSalary":  7000
+    },
+    {
+        "name":  "ساره",
+        "jobTitle":  "مبيعات",
+        "departmentName":  "ادارة المبيعات",
+        "branchName":  "الشيخ زايد",
+        "baseSalary":  6000
+    },
+    {
+        "name":  "موظف التجمع",
+        "jobTitle":  "مبيعات",
+        "departmentName":  "ادارة المبيعات",
+        "branchName":  "التجمع",
+        "baseSalary":  11000
+    },
+    {
+        "name":  "ادهم علاء",
+        "jobTitle":  "عامل",
+        "departmentName":  "مصنع الالومنيوم",
+        "baseSalary":  11000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "محمود مصطفى الاسيوط",
+        "jobTitle":  "عامل",
+        "departmentName":  "مصنع الالومنيوم",
+        "baseSalary":  12000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "احمد حموده",
+        "jobTitle":  "عامل",
+        "departmentName":  "مصنع الالومنيوم",
+        "baseSalary":  5000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "انور خليفه",
+        "jobTitle":  "عامل",
+        "departmentName":  "مصنع الالومنيوم",
+        "baseSalary":  10000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "محجوب السوداني",
+        "jobTitle":  "عامل",
+        "departmentName":  "مصنع الالومنيوم",
+        "baseSalary":  6000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "محمد السوداني",
+        "jobTitle":  "عامل",
+        "departmentName":  "مصنع الالومنيوم",
+        "baseSalary":  7000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "عم جمال",
+        "jobTitle":  "عامل",
+        "departmentName":  "مصنع الالومنيوم",
+        "baseSalary":  10000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "سيد رمضان",
+        "jobTitle":  "عامل",
+        "departmentName":  "مصنع الالومنيوم",
+        "baseSalary":  6500,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "مدبن",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  10000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "كمال ربيع",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  7250,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "فتحي",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  8000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "احمد سيد",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  6000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "ابراهيم سيد",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  8000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "محمد صابر",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  2133,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "بسام",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  9000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "عماد محمد",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  15000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "هشام محمدى",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  4000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "ادهم",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  11000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "احمد السوداني",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  6000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "نور الومنيوم",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  10000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "مصعب السوداني",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  6000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "احمد خالد",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  917,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "سليمان",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  4000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "مصطفى هشام",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  2775,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "شريف",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  8500,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "مصطفى فوزى",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  6000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "كريم فتح",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  6000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "احمد زقق",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  10000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "محمد هشام",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  400,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "نور شتر",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  3000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "احمد كابا",
+        "jobTitle":  "عامل شتر",
+        "departmentName":  "مصنع الشتر",
+        "baseSalary":  8000,
+        "shiftType":  "MORNING"
+    },
+    {
+        "name":  "نبيل",
+        "jobTitle":  "سائق",
+        "departmentName":  "ادارة السواقين",
+        "baseSalary":  6500
+    },
+    {
+        "name":  "احمد سمير",
+        "jobTitle":  "سائق",
+        "departmentName":  "ادارة السواقين",
+        "baseSalary":  7000
+    },
+    {
+        "name":  "وليد سعد",
+        "jobTitle":  "سائق",
+        "departmentName":  "ادارة السواقين",
+        "baseSalary":  6300
+    }
+]

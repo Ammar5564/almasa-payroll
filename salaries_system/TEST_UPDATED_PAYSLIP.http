@@ -1,0 +1,74 @@
+### Updated Pay Slip Testing - No Tax & Corrected Social Insurance
+
+#### Test the corrected social insurance calculation examples:
+
+**Example 1: Salary = 5,000**
+- Insurance base = min(5,000, 10,900) = 5,000
+- Employee insurance = 5,000 × 11% = 550
+
+**Example 2: Salary = 15,000**
+- Insurance base = min(15,000, 10,900) = 10,900
+- Employee insurance = 10,900 × 11% = 1,199
+
+#### GET /api/payroll/{employeeName}/payslip - Updated Pay Slip
+```bash
+curl -X GET "http://localhost:8080/api/payroll/John%20Doe/payslip?year=2026&month=3"
+```
+
+Expected response (NO TAX field):
+```json
+{
+  "employeeName": "John Doe",
+  "jobTitle": "Software Developer",
+  "departmentName": "IT Department",
+  "month": "March 2026",
+  "baseSalary": 5000.00,
+  "additions": {
+    "overtimePay": 150.00,
+    "bonus": 0.00,
+    "arrears": 0.00,
+    "allowances": 0.00
+  },
+  "deductions": {
+    "lateDeduction": 50.00,
+    "absenceDeduction": 0.00,
+    "loanDeduction": 1000.00,
+    "penalties": 200.00,
+    "socialInsurance": 550.00  // Corrected: 11% of min(salary, 10,900)
+  },
+  "totalAdditions": 150.00,
+  "totalDeductions": 1800.00,  // Updated: no tax included
+  "netSalary": 3350.00,        // Updated: base + additions - deductions
+  "generatedAt": "2026-03-25"
+}
+```
+
+#### GET /api/payroll/{employeeName}/payslip/export - Updated HTML Export
+```bash
+curl -X GET "http://localhost:8080/api/payroll/John%20Doe/payslip/export?year=2026&month=3" \
+  --output john_doe_payslip_March_2026.html
+```
+
+HTML Changes:
+- ✅ Removed "ضريبة / Tax" row from deductions table
+- ✅ Updated "تأمين اجتماعي / Social Insurance" with corrected calculation
+- ✅ Total deductions recalculated without tax
+- ✅ Net salary formula: base + additions - deductions (no tax)
+
+#### Key Changes Made:
+1. **Tax Completely Removed**:
+   - Removed from PayrollRecord entity
+   - Removed from DeductionService interface and implementation
+   - Removed from PayrollService calculations
+   - Removed from PaySlipResponse DTO
+   - Removed from HTML template
+
+2. **Social Insurance Fixed**:
+   - Uses Egyptian Social Insurance Law No. 148 of 2019
+   - Formula: insuranceBase = min(employeeBaseSalary, 10900.00)
+   - Employee insurance = insuranceBase × 11%
+   - Named constant INSURANCE_BASE_CAP = 10900.00
+
+3. **Updated Calculations**:
+   - totalDeductions = lateDeduction + absenceDeduction + loanDeduction + penalties + socialInsurance
+   - netSalary = baseSalary + totalAdditions - totalDeductions

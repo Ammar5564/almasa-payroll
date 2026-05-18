@@ -1,0 +1,56 @@
+### Pay Slip Feature Testing
+
+#### GET /api/payroll/{employeeName}/payslip - Get Pay Slip JSON
+```bash
+curl -X GET "http://localhost:8080/api/payroll/John%20Doe/payslip?year=2026&month=3"
+```
+
+Expected response structure:
+```json
+{
+  "employeeName": "John Doe",
+  "jobTitle": "Software Developer",
+  "departmentName": "IT Department",
+  "month": "March 2026",
+  "baseSalary": 5000.00,
+  "additions": {
+    "overtimePay": 150.00,
+    "bonus": 0.00,
+    "arrears": 0.00,
+    "allowances": 0.00
+  },
+  "deductions": {
+    "lateDeduction": 50.00,
+    "absenceDeduction": 0.00,
+    "loanDeduction": 1000.00,
+    "penalties": 200.00,
+    "tax": 0.00,
+    "socialInsurance": 0.00
+  },
+  "totalAdditions": 150.00,
+  "totalDeductions": 1250.00,
+  "netSalary": 3900.00,
+  "generatedAt": "2026-03-25"
+}
+```
+
+#### GET /api/payroll/{employeeName}/payslip/export - Export Pay Slip as HTML
+```bash
+curl -X GET "http://localhost:8080/api/payroll/John%20Doe/payslip/export?year=2026&month=3" \
+  --output john_doe_payslip_March_2026.html
+```
+
+Features:
+- Uses existing payroll record if available, otherwise calculates on the fly
+- RTL (Arabic-friendly) HTML template with company branding
+- Printable format with proper styling
+- Bilingual labels (Arabic/English)
+- Comprehensive salary breakdown with all additions and deductions
+- Professional layout with company name "شركة الماسة - Al-Masa Company"
+
+#### Test with Different Scenarios:
+1. **Employee with existing payroll record**: Uses stored data
+2. **Employee without payroll record**: Calculates in real-time
+3. **Employee with overtime**: Shows overtime pay in additions
+4. **Employee with absences**: Shows absence deductions
+5. **Employee with disciplinary actions**: Shows penalties in deductions

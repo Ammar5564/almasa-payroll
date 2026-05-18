@@ -1,0 +1,26 @@
+### Disciplinary Actions API Testing
+
+#### POST /api/disciplinary - Add Disciplinary Action
+```bash
+curl -X POST http://localhost:8080/api/disciplinary \
+  -H "Content-Type: application/json" \
+  -d '{
+    "employeeName": "John Doe",
+    "amount": 200.00,
+    "reason": "Late submission",
+    "date": "2026-03-01"
+  }'
+```
+
+#### GET /api/disciplinary/{employeeName} - Get Employee Disciplinary Actions
+```bash
+curl -X GET http://localhost:8080/api/disciplinary/John%20Doe
+```
+
+#### Payroll Integration Test
+After adding disciplinary actions, the payroll calculation will automatically include them in the penalties field when calling:
+```bash
+curl -X POST http://localhost:8080/api/payroll/John%20Doe?year=2026&month=3
+```
+
+The response will show the updated penalties field including disciplinary actions.

@@ -1,0 +1,93 @@
+### Test Reporting API Examples
+
+### 1. Weekly Report
+POST http://localhost:8080/api/reports/weekly
+Content-Type: application/json
+
+{
+  "startDate": "2026-03-01",
+  "endDate": "2026-03-07"
+}
+
+### 2. Custom Payroll Report (Monthly)
+POST http://localhost:8080/api/reports/custom
+Content-Type: application/json
+
+{
+  "fromDate": "2026-03-01",
+  "toDate": "2026-03-31",
+  "reportType": "payroll"
+}
+
+### 3. Custom Attendance Report (Monthly)
+POST http://localhost:8080/api/reports/custom
+Content-Type: application/json
+
+{
+  "fromDate": "2026-03-01",
+  "toDate": "2026-03-31",
+  "reportType": "attendance"
+}
+
+### 4. Custom Loans Report (Quarterly)
+POST http://localhost:8080/api/reports/custom
+Content-Type: application/json
+
+{
+  "fromDate": "2026-01-01",
+  "toDate": "2026-03-31",
+  "reportType": "loans"
+}
+
+### 5. Custom Department Report (Yearly)
+POST http://localhost:8080/api/reports/custom
+Content-Type: application/json
+
+{
+  "fromDate": "2026-01-01",
+  "toDate": "2026-12-31",
+  "reportType": "department"
+}
+
+### 6. Export Report to CSV
+POST http://localhost:8080/api/reports/export
+Content-Type: application/json
+
+{
+  "reportTitle": "Weekly Report",
+  "generatedDate": "2026-03-01",
+  "periodStart": "2026-03-01",
+  "periodEnd": "2026-03-07",
+  "summary": {
+    "totalEmployees": 25,
+    "totalAttendanceRecords": 125,
+    "totalLateMinutes": 180,
+    "totalOvertimeMinutes": 240
+  },
+  "details": [
+    {
+      "employeeName": "Ahmed Mohamed",
+      "attendances": [
+        {
+          "id": 1,
+          "employeeName": "Ahmed Mohamed",
+          "date": "2026-03-01",
+          "actualStart": "09:15",
+          "actualEnd": "18:30",
+          "lateMinutes": 15,
+          "overtimeMinutes": 90
+        }
+      ]
+    }
+  ]
+}
+
+### 7. Error Case - Invalid Report Type
+POST http://localhost:8080/api/reports/custom
+Content-Type: application/json
+
+{
+  "fromDate": "2026-03-01",
+  "toDate": "2026-03-31",
+  "reportType": "invalid_type"
+}

@@ -1,0 +1,14 @@
+[
+  { "departmentName": "الاداره العليا",   "branchName": null,        "officialStart": "09:00", "officialEnd": "17:30", "flexibleGroup": true  },
+  { "departmentName": "الاداره الماليه",  "branchName": null,        "officialStart": "09:00", "officialEnd": "17:30", "flexibleGroup": false },
+  { "departmentName": "بوفيه وضيافه",     "branchName": null,        "officialStart": "09:00", "officialEnd": "17:30", "flexibleGroup": false },
+
+  { "departmentName": "ادارة المبيعات",   "branchName": "شيراتون",   "officialStart": "09:00", "officialEnd": "17:30", "flexibleGroup": false },
+  { "departmentName": "ادارة المبيعات",   "branchName": "الشيخ زايد","officialStart": "09:00", "officialEnd": "17:30", "flexibleGroup": false },
+  { "departmentName": "ادارة المبيعات",   "branchName": "التجمع",     "officialStart": "09:00", "officialEnd": "17:30", "flexibleGroup": false },
+
+  { "departmentName": "مصنع الالومنيوم",  "branchName": null,        "officialStart": "09:00", "officialEnd": "17:30", "flexibleGroup": false },
+  { "departmentName": "مصنع الشتر",       "branchName": null,        "officialStart": "09:00", "officialEnd": "17:30", "flexibleGroup": false },
+  { "departmentName": "ادارة السواقين",   "branchName": null,        "officialStart": "09:00", "officialEnd": "17:30", "flexibleGroup": false }
+]
+
