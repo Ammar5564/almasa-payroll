@@ -3,7 +3,7 @@
 # 🏢 Al-Masa Payroll System
 ### نظام الرواتب — شركة الماسه
 
-**A full-stack Arabic-first HR & Payroll Management System built for Egyptian manufacturing and retail.**
+**A production-ready, full-stack HR & Payroll platform with a locale-aware Arabic UI, a domain-specific statutory compliance engine, and a clean REST API — built to scale across distributed teams and multi-branch operations.**
 
 [![Java](https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://openjdk.org/projects/jdk/21/)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.0-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)](https://spring.io/projects/spring-boot)
