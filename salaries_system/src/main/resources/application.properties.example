@@ -1,9 +1,9 @@
 spring.application.name=salaries_system
 server.port=8081
 
-spring.datasource.url=jdbc:postgresql://localhost:5432/Demo
-spring.datasource.username=postgres
-spring.datasource.password=Postgres@123
+spring.datasource.url=${DB_URL:jdbc:postgresql://localhost:5432/Demo}
+spring.datasource.username=${DB_USERNAME:postgres}
+spring.datasource.password=${DB_PASSWORD:changeme}
 spring.datasource.driver-class-name=org.postgresql.Driver
 
 spring.jpa.hibernate.ddl-auto=update
@@ -18,5 +18,5 @@ logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
 
 # ── Auth / JWT ────────────────────────────────────────────────────────────────
 # IMPORTANT: change in production
-app.jwt.secret=s8d7f6sdf8s7df6sdf87sdf8s7df6sdf87
+app.jwt.secret=${JWT_SECRET:change-this-secret-in-production}
 app.jwt.expirationMinutes=720

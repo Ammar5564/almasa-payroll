@@ -84,10 +84,10 @@ public class DataSeeder {
     private void seedUsers(AppUserRepository repo, PasswordEncoder encoder) {
         if (repo.count() > 0) return;
 
-        createUser(repo, encoder, "Yasser Basher", "1479y", AppRole.ADMIN);
-        createUser(repo, encoder, "Almasa-user1", "123456789", AppRole.USER);
-        createUser(repo, encoder, "Almasa-user2", "12345678", AppRole.USER);
-        createUser(repo, encoder, "Almasa-user3", "1234567", AppRole.USER);
+        createUser(repo, encoder, "admin",    "admin123",  AppRole.ADMIN);
+        createUser(repo, encoder, "user1",    "user1pass", AppRole.USER);
+        createUser(repo, encoder, "user2",    "user2pass", AppRole.USER);
+        createUser(repo, encoder, "user3",    "user3pass", AppRole.USER);
     }
 
     private void createUser(AppUserRepository repo, PasswordEncoder encoder,
